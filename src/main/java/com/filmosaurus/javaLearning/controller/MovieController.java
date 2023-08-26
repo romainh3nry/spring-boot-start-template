@@ -1,15 +1,14 @@
 package com.filmosaurus.javaLearning.controller;
 
-import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.Optional;
 
-import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,5 +55,15 @@ public class MovieController {
         else {
             return Collections.emptyList();
         }
+    }
+
+    @PutMapping("/movies/update/{id}")
+    public Movie update(@RequestBody Movie newMovie, @PathVariable("id") Long id) {
+        Optional<Movie> movie = movieService.searchMovieById(id);
+        movie.get().setTitle(newMovie.getTitle());
+        movie.get().setDirector(newMovie.getDirector());
+        movie.get().setPlot(newMovie.getPlot());
+        movie.get().setRelease_date(newMovie.getRelease_date());
+        return movieService.createMovie(movie.get());
     }
 }

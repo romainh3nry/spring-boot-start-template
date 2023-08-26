@@ -38,7 +38,7 @@ public class MovieService {
         return movieRepository.findByDirectorContainsIgnoreCase(param);
     }
 
-    public Iterable<Movie> SearchMoviesByTitle(String param) {
-        return movieRepository.findByTitleContainsIgnoreCase(param);
+    public Iterable<Movie> SearchMoviesByTitle(String name) {
+        return movieRepository.findByTitleContainsIgnoreCase(name);
     }
 }
