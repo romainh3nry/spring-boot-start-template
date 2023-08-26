@@ -33,4 +33,12 @@ public class MovieService {
         movieRepository.delete(movie);
         return movie;
     }
+
+    public Iterable<Movie> searchMoviesByDirector(String param) {
+        return movieRepository.findByDirectorContainsIgnoreCase(param);
+    }
+
+    public Iterable<Movie> SearchMoviesByTitle(String param) {
+        return movieRepository.findByTitleContainsIgnoreCase(param);
+    }
 }
