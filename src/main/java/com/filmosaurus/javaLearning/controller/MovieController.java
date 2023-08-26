@@ -22,29 +22,29 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/movies")
+    @GetMapping("/api/movies")
     public Iterable<Movie> getMovies() {
         return movieService.getMovies();
     }
 
-    @PostMapping("/create/movie")
+    @PostMapping("/api/movies/create/movie")
     public Movie createMovie(@RequestBody Movie newMovie) {
         return movieService.createMovie(newMovie);
     }
 
-    @GetMapping("movies/{id}")
+    @GetMapping("/api/movies/find/{id}")
     public Optional<Movie> searchById(@PathVariable("id") Long id) {
         return movieService.searchMovieById(id);
     }
 
-    @DeleteMapping("movies/delete/{id}")
+    @DeleteMapping("/api/movies/delete/{id}")
     public String deleteById(@PathVariable("id") Long id) {
         Optional<Movie> movie = movieService.searchMovieById(id);
         movieService.delete(movie.get());
         return "OK";
     }
 
-    @GetMapping("movies/search")
+    @GetMapping("/api/movies/search")
     public Iterable<Movie> searchMovies(@RequestParam String param, @RequestParam String search) {
         if (param.equals("director")) {
             return movieService.searchMoviesByDirector(search);
@@ -57,7 +57,7 @@ public class MovieController {
         }
     }
 
-    @PutMapping("/movies/update/{id}")
+    @PutMapping("/api/movies/update/{id}")
     public Movie update(@RequestBody Movie newMovie, @PathVariable("id") Long id) {
         Optional<Movie> movie = movieService.searchMovieById(id);
         movie.get().setTitle(newMovie.getTitle());
