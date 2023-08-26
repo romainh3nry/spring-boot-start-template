@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+  db:
+    container_name: psql-db
+    image: postgres:13
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=filmosaurus
+    networks:
+      - backend-network
+volumes:
+  postgres_data:
+
+networks:
+  backend-network:
+    driver: bridge
