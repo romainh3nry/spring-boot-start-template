@@ -18,4 +18,8 @@ public class HomeService {
     public Iterable<Movie> getMovies() {
         return homeRepository.findAll();
     }
+
+    public <Optional>Movie getMovie(Long id) {
+        return homeRepository.findById(id).get();
+    }
 }
