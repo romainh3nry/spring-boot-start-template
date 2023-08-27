@@ -7,3 +7,17 @@
     <li><a href="/movies/{{id}}">{{title}}</a></li>
   {{/movies}}
 </ul>
+
+<hr />
+
+<form action="/movies/create" method="post">
+<label>Title</label>
+<input type="text" name="title" />
+<label>Director</label>
+<input type="text" name="director" />
+<label>Release date</label>
+<input type="date" name="release_date" />
+<label>Plot</label>
+<textarea name="plot"></textarea>
+<button type="submit">Create</button>
+</form>

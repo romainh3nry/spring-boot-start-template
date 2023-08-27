@@ -22,4 +22,8 @@ public class HomeService {
     public <Optional>Movie getMovie(Long id) {
         return homeRepository.findById(id).get();
     }
+
+    public Movie create(Movie movie) {
+        return homeRepository.save(movie);
+    }
 }
