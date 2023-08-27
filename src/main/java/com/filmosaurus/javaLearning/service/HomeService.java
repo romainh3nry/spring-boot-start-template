@@ -26,4 +26,9 @@ public class HomeService {
     public Movie create(Movie movie) {
         return homeRepository.save(movie);
     }
+
+    public Movie delete(Movie movie) {
+        homeRepository.delete(movie);
+        return movie;
+    }
 }

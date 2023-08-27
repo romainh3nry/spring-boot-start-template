@@ -35,4 +35,10 @@ public class HomeController {
         homeService.create(movie);
         return "redirect:/";
     }
+    @GetMapping("/movies/delete/{id}")
+    public String deleteMovie(@PathVariable Long id) {
+        Movie movie = homeService.getMovie(id);
+        homeService.delete(movie);
+        return "redirect:/";
+    }
 }
