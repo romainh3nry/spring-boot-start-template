@@ -33,7 +33,12 @@ public class UserService implements UserDetailsService{
 
     public String addUser(User userInfo) {
         userInfo.setPassword(encoder.encode(userInfo.getPassword()));
-        repository.save(userInfo);
-        return "User Added Successfully";
+        try {
+            repository.save(userInfo);
+            return "User Added Successfully";
+        }
+        catch(Exception e) {
+            return "USER NOT CREATED";
+        }
     }
 }

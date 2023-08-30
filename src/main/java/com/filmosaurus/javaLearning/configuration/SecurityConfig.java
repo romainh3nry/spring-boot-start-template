@@ -37,7 +37,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/**").authenticated()
+                .requestMatchers("/").permitAll()
+                .requestMatchers("/api/**").hasAuthority("ROLES_ADMIN")
                 .requestMatchers("/auth/addNewUser", "/auth/generateToken").permitAll()
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
