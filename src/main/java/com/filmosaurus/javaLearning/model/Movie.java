@@ -1,9 +1,12 @@
 package com.filmosaurus.javaLearning.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -23,4 +26,7 @@ public class Movie {
     private String release_date;
 
     private String plot;
+
+    @OneToMany(mappedBy = "movie")
+    Set<WatchList> watchlist;
 }

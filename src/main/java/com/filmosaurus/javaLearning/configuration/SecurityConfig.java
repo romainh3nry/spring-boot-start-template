@@ -32,12 +32,12 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         return new UserService();
     }
-    
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/").permitAll()
+                .requestMatchers("/", "/movies/**").permitAll()
                 .requestMatchers("/api/**").hasAuthority("ROLES_ADMIN")
                 .requestMatchers("/auth/addNewUser", "/auth/generateToken").permitAll()
             )
