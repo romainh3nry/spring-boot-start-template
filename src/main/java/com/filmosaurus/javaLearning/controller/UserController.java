@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.filmosaurus.javaLearning.model.AuthRequest;
 import com.filmosaurus.javaLearning.model.User;
 import com.filmosaurus.javaLearning.service.JwtService;
+import com.filmosaurus.javaLearning.service.UserInfoDetails;
 import com.filmosaurus.javaLearning.service.UserService;
 
 @RestController
@@ -37,8 +38,8 @@ public class UserController {
     }
 
     @GetMapping("/user/info")
-    public Object getAuthenticateUserInfo(@AuthenticationPrincipal UserDetails userDetails) {
-        return userDetails.getUsername();
+    public Object getAuthenticateUserInfo(@AuthenticationPrincipal UserInfoDetails userInfoDetails) {
+        return userInfoDetails.getUserInfo();
     }
 
     @PostMapping("/generateToken")

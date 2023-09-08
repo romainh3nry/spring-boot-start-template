@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.filmosaurus.javaLearning.model.User;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -13,11 +14,13 @@ import java.util.stream.Collectors;
  
 public class UserInfoDetails implements UserDetails {
  
+    private Long id;
     private String name;
     private String password;
     private List<GrantedAuthority> authorities;
  
     public UserInfoDetails(User userInfo) {
+        id = userInfo.getId();
         name = userInfo.getName();
         password = userInfo.getPassword();
         authorities = Arrays.stream(userInfo.getRoles().split(","))
@@ -34,7 +37,15 @@ public class UserInfoDetails implements UserDetails {
     public String getPassword() {
         return password;
     }
+
+    public Object getUserInfo() {
+        return new Object[] {this.getUserId(), this.getUsername()};
+    }
  
+    public Long getUserId() {
+        return id;
+    }
+
     @Override
     public String getUsername() {
         return name;
