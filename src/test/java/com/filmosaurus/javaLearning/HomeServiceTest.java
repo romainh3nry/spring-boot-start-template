@@ -1,10 +1,12 @@
 package com.filmosaurus.javaLearning;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.BDDMockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,5 +50,32 @@ public class HomeServiceTest {
         Iterable<Movie> movies = service.getMovies();
 
         assertThat(movies).containsExactly(movie1, movie2);
+    }
+
+    @Test
+    void creatingANewMovieShouldReturnTheSameData() {
+        given(repository.save(any(Movie.class)))
+        .willReturn(
+            new Movie(
+                "test_title",
+                "test_director",
+                "test_release_date",
+                "test_plot"
+            )
+        );
+
+        Movie new_movie = service.create(
+            new Movie(
+                "test_title",
+                "test_director",
+                "test_release_date",
+                "test_plot"
+            )
+        );
+
+        assertThat(new_movie.getTitle()).isEqualTo("test_title");
+        assertThat(new_movie.getDirector()).isEqualTo("test_director");
+        assertThat(new_movie.getRelease_date()).isEqualTo("test_release_date");
+        assertThat(new_movie.getPlot()).isEqualTo("test_plot");
     }
 }
