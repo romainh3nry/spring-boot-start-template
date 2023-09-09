@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
@@ -77,5 +78,19 @@ public class HomeServiceTest {
         assertThat(new_movie.getDirector()).isEqualTo("test_director");
         assertThat(new_movie.getRelease_date()).isEqualTo("test_release_date");
         assertThat(new_movie.getPlot()).isEqualTo("test_plot");
+    }
+
+    @Test
+    void deleteAMovieShouldWork() {
+        Movie movie = new Movie(
+            "test_title",
+            "test_director",
+            "test_release_date",
+            "test_plot"
+        );
+
+        service.delete(movie);
+
+        verify(repository).delete(movie);
     }
 }
