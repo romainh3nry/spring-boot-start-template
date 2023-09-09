@@ -31,4 +31,10 @@ public class Movie {
         this.release_date = release_date;
         this.plot = plot;
     }
+
+    @Override
+  public String toString() {
+    return "Movie{" + "id=" + id + ", title='" + title + '\'' + ", director='" + director + '\'' + ", release_date='"
+      + release_date + '\'' +", plot='" + plot + '\'' + '}';
+  }
 }
