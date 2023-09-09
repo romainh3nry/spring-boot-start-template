@@ -19,7 +19,13 @@ public class CoreDomainTest {
         assertThat(movie.getDirector()).isEqualTo("test_director");
         assertThat(movie.getRelease_date()).isEqualTo("test_release_date");
         assertThat(movie.getPlot()).isEqualTo("test_plot");
-
+    
+    }
+    @Test
+    void ToStringShouldBeAlsoTested() {
+        Movie movie = new Movie(
+            "test_title", "test_director", "test_release_date", "test_plot" 
+        );
         assertThat(movie.toString())
             .isEqualTo(
                 "Movie{id=null, title='test_title', director='test_director', release_date='test_release_date', plot='test_plot'}"
