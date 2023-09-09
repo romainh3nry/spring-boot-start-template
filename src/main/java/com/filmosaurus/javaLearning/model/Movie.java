@@ -23,4 +23,12 @@ public class Movie {
     private String release_date;
 
     private String plot;
+
+    public Movie(String title, String director, String release_date, String plot) {
+        this.id = null;
+        this.title = title;
+        this.director = director;
+        this.release_date = release_date;
+        this.plot = plot;
+    }
 }
