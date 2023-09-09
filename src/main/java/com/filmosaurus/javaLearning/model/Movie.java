@@ -24,6 +24,10 @@ public class Movie {
 
     private String plot;
 
+    protected Movie() {
+
+    }
+
     public Movie(String title, String director, String release_date, String plot) {
         this.id = null;
         this.title = title;
