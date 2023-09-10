@@ -23,4 +23,22 @@ public class Movie {
     private String release_date;
 
     private String plot;
+
+    protected Movie() {
+
+    }
+
+    public Movie(String title, String director, String release_date, String plot) {
+        this.id = null;
+        this.title = title;
+        this.director = director;
+        this.release_date = release_date;
+        this.plot = plot;
+    }
+
+    @Override
+  public String toString() {
+    return "Movie{" + "id=" + id + ", title='" + title + '\'' + ", director='" + director + '\'' + ", release_date='"
+      + release_date + '\'' +", plot='" + plot + '\'' + '}';
+  }
 }
