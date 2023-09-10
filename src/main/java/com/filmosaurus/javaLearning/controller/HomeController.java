@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.filmosaurus.javaLearning.configuration.AppConfig;
 import com.filmosaurus.javaLearning.model.Movie;
 import com.filmosaurus.javaLearning.service.HomeService;
 
@@ -15,12 +16,20 @@ import com.filmosaurus.javaLearning.service.HomeService;
 @Controller
 public class HomeController {
 
-    @Autowired
-    private HomeService homeService;
+    private final HomeService homeService;
+
+    private final AppConfig appConfig;
+
+    public HomeController(HomeService homeService, AppConfig appConfig) {
+        this.homeService = homeService;
+        this.appConfig = appConfig;
+    }
 
     @GetMapping("/")
     public String home (Model model) {
         model.addAttribute("movies", homeService.getMovies());
+        model.addAttribute("header", appConfig.header());
+        model.addAttribute("intro", appConfig.intro());
         return "home";
     }
 
