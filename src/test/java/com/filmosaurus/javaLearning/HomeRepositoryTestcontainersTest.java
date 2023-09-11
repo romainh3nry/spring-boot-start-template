@@ -34,7 +34,7 @@ public class HomeRepositoryTestcontainersTest {
 
     @Container
     static final PostgreSQLContainer<?> database = 
-        new PostgreSQLContainer<>("postgres:9.6.12").withUsername("postgres");
+        new PostgreSQLContainer<>("postgres:13").withUsername("postgres");
 
     static class DataSourceInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
         

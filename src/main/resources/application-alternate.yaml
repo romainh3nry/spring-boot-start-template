@@ -1,6 +1,6 @@
 app:
   config:
-    header: Greetings from YAML-based settings!
+    header: Welcome Greetings from YAML-based settings!
     intro: Check out this page hosted from YAML
     users:
       -
